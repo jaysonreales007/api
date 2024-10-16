@@ -17,10 +17,11 @@ app.use(express.json());
 // Routes
 app.use('/api/v1/posts', require('./routes/posts'));
 app.use('/api/v1/projects', require('./routes/projects'));
+app.use('/api/v1/categories', require('./routes/categories'));
 app.use('/api/v1/test', require('./routes/api'));
 
 // Remove the app.listen part as Vercel will handle this
-const PORT = process.env.PORT || 1909;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
 // Export the Express API
