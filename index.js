@@ -18,6 +18,7 @@ app.use(express.json());
 app.use('/api/v1/posts', require('./routes/posts'));
 app.use('/api/v1/projects', require('./routes/projects'));
 app.use('/api/v1/categories', require('./routes/categories'));
+app.use('/api/v1/skills', require('./routes/skills'));
 app.use('/api/v1/test', require('./routes/api'));
 
 // Remove the app.listen part as Vercel will handle this
