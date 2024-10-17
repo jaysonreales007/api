@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 Not Found</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: #000;
+            color: #0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+            position: relative;
+        }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        .glitch {
+            position: relative;
+        }
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 #ff00c1;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim 5s infinite linear alternate-reverse;
+        }
+        .glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 #00fff9, 2px 2px #ff00c1;
+            animation: glitch-anim2 1s infinite linear alternate-reverse;
+        }
+        @keyframes glitch-anim {
+            0% {
+                clip: rect(31px, 9999px, 94px, 0);
+                transform: skew(0.85deg);
+            }
+            5% {
+                clip: rect(70px, 9999px, 78px, 0);
+                transform: skew(0.17deg);
+            }
+            /* ... (rest of the keyframes remain the same) ... */
+            100% {
+                clip: rect(47px, 9999px, 76px, 0);
+                transform: skew(0.37deg);
+            }
+        }
+        @keyframes glitch-anim2 {
+            0% {
+                clip: rect(65px, 9999px, 91px, 0);
+                transform: skew(0.84deg);
+            }
+            5% {
+                clip: rect(79px, 9999px, 98px, 0);
+                transform: skew(0.59deg);
+            }
+            /* ... (rest of the keyframes remain the same) ... */
+            100% {
+                clip: rect(40px, 9999px, 31px, 0);
+                transform: skew(0.17deg);
+            }
+        }
+        .blink {
+            animation: blink-animation 1s steps(5, start) infinite;
+        }
+        @keyframes blink-animation {
+            to {
+                visibility: hidden;
+            }
+        }
+        #terminal {
+            font-family: 'Courier New', monospace;
+            color: #0f0;
+            background-color: #000;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: left;
+            margin-top: 20px;
+        }
+        a {
+            color: #0f0;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="glitch" data-text="404 Not Found">404 Not Found</h1>
+        <p>The page you are looking for does not exist.</p>
+        <p class="blink">Error 404. Initiating recovery protocol...</p>
+        <div id="terminal"></div>
+        <p>Please visit my <a href="https://jayson-dev.vercel.app/">website</a> instead!</p>
+    </div>
+    <script>
+        const messages = [
+            "Scanning directory structure...",
+            "Analyzing request parameters...",
+            "Checking for mistyped URLs...",
+            "Searching for relocated resources...",
+            "Verifying server configurations...",
+            "Initiating deep web crawl...",
+            "Consulting backup databases...",
+            "Attempting to reconstruct path...",
+            "Failed to locate resource. Error 404 confirmed."
+        ];
+
+        const terminal = document.getElementById('terminal');
+        let messageIndex = 0;
+
+        function typeMessage(message, index = 0) {
+            if (index < message.length) {
+                terminal.innerHTML += message.charAt(index);
+                setTimeout(() => typeMessage(message, index + 1), 50);
+            } else {
+                terminal.innerHTML += '<br>';
+                messageIndex++;
+                if (messageIndex < messages.length) {
+                    setTimeout(displayNextMessage, 1000);
+                }
+            }
+        }
+
+        function displayNextMessage() {
+            typeMessage(messages[messageIndex]);
+        }
+
+        displayNextMessage();
+    </script>
+</body>
+</html>
